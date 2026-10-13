@@ -3,12 +3,12 @@
     --background-color-2: #4B5043;
     --highlight-color: #F2BB05;
     --text-color: #E8F7EE;
-    --page-margin: 50px;
+    --page-margin: 30px;
+    --grid-gap: 20px;
 }
 
 body {
-    margin-left: var(--page-margin);
-    margin-right: var(--page-margin);
+    margin: 0 var(--page-margin);
     background-color: var(--background-color-1);
 }
 
@@ -18,11 +18,11 @@ h1, h2, h3, p, a {
 }
 
 h1 {
+    text-align: center;
     background-color: var(--background-color-2);
     border-radius: 10px;
     border: 3px solid var(--highlight-color);
     padding: 8px;
-    text-align: center;
 }
 
 h2 {
@@ -38,28 +38,29 @@ p {
     line-height: 1.5;
 }
 
-a {
-    color: var(--highlight-color);
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid var(--text-color);
 }
 
-a:hover {
-    color: var(--text-color);
-}
-
-nav {
-    text-align: center;
-}
-
-nav li {
-    display: inline-block;
-    margin: 5px 15px;
+nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
 }
 
 nav a {
+    display: block;
     font-weight: bold;
+    text-align: center;
     text-decoration: none;
-    padding: 6px 12px;
+    padding: 10px 12px;
     border-radius: 10px;
+    color: var(--highlight-color);
     background-color: var(--background-color-2);
 }
 
@@ -68,16 +69,32 @@ nav a:hover {
     color: var(--background-color-1);
 }
 
-img {
-    max-width: 400px;
-    border-radius: 10px;
-    border: 2px solid var(--text-color);
+/*
+/// CLAUDE CODE PROMPT FOR LAB ASSIGNMENT ///
+The nav and projects section are already use Flexbox/Grid. Turn the about section into a Grid as well.
+Use the existing media query breakpoints the make the profile pciture and text stack on smaller screens and sit side by side on larger screens.
+The h2 should span the full width. When the screen is wide enough, the profile picture should be on the left and the text on the right, with the text taking most of the screen.
+Only modify the CSS file, do not touch the HTML file unless you need to add class/id attributes to elements.
+*/
+#about {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: var(--grid-gap);
+}
+
+#about h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
 }
 
 #profile-picture {
-    max-width: 200px;
+    width: 200px;
+    aspect-ratio: 1;
+    object-fit: cover;
     border-radius: 50%;
     border: 4px solid var(--highlight-color);
+    margin: auto;
+    margin-top: 15px;
 }
 
 #contact {
@@ -86,10 +103,74 @@ img {
     padding: 8px 20px 20px 20px;
 }
 
+#projects {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--grid-gap);
+    margin-bottom: var(--page-margin);
+}
+
+#projects h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
 .project-card {
     border-radius: 10px;
     border: 2px solid var(--highlight-color);
     background-color: var(--background-color-2);
-    margin-bottom: var(--page-margin);
     padding: 8px 20px 20px 20px;
+}
+
+.project-card img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 600px) {
+    :root {
+        --page-margin: 30px;
+    }
+
+    nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #projects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    :root {
+        --page-margin: 40px;
+    }
+
+    #about {
+        grid-template-columns: 200px 1fr;
+    }
+
+    #profile-picture {
+        grid-row: span 2;
+        margin-top: auto;
+        align-self: start;
+    }
+
+    #projects {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    :root {
+        --grid-gap: 30px;
+    }
+
+    body {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 }
