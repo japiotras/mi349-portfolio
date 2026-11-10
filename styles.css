@@ -2,8 +2,8 @@
     color-scheme: light dark;
 
     --background-color-1: light-dark(#e5e5e5, #021427);
-    --background-color-2: light-dark(#848484, #333333);
-    --highlight-color: light-dark(#F2BB05, #F2BB05);
+    --background-color-2: light-dark(#b3b3b3, #333333);
+    --highlight-color: light-dark(#006adc, #F2BB05);
     --text-color: light-dark(#000000, #E8F7EE);
 
     --page-margin: 30px;
