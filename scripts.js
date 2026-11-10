@@ -1,3 +1,7 @@
+window.onload = () => {
+    ScrollReveal().reveal('.site', {delay: 250});
+}
+
 const lightModeButton = document.getElementById('light-mode-button');
 
 lightModeButton.addEventListener('click', () => {
