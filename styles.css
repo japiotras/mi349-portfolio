@@ -1,8 +1,11 @@
 :root {
-    --background-color-1: #021427;
-    --background-color-2: #333333;
-    --highlight-color: #F2BB05;
-    --text-color: #E8F7EE;
+    color-scheme: light dark;
+
+    --background-color-1: light-dark(#e5e5e5, #021427);
+    --background-color-2: light-dark(#b3b3b3, #333333);
+    --highlight-color: light-dark(#006adc, #F2BB05);
+    --text-color: light-dark(#000000, #E8F7EE);
+
     --page-margin: 30px;
     --grid-gap: 20px;
 }
@@ -65,6 +68,18 @@ nav a {
 }
 
 nav a:hover {
+    background-color: var(--highlight-color);
+    color: var(--background-color-1);
+}
+
+#light-mode-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    max-width: 80px;
+    border: none;
+    border-radius: 5px;
     background-color: var(--highlight-color);
     color: var(--background-color-1);
 }
